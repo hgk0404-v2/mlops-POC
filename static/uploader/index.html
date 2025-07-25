@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>YOLO 업로더</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css"/>
+    <style>
+        body { font-family: sans-serif; margin: 40px; }
+        .dropzone {
+        border: 3px dashed #007bff;
+        border-radius: 10px;
+        background: #f0f0f0;
+        padding: 30px;
+        margin-bottom: 20px;
+        }
+        button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        }
+    </style>
+    </head>
+    <body>
+    <h2>📤 YOLO 이미지 + 어노테이션 업로더 (MinIO Presigned)</h2>
+
+    <form action="/" class="dropzone" id="yoloDropzone"></form>
+
+    <button id="uploadBtn">✅ 업로드 시작</button>
+
+    <script>
+        Dropzone.autoDiscover = false;
+        const bucketName = "yolo-train";  // ← 실제 버킷명에 맞게
+
+        const dz = new Dropzone("#yoloDropzone", {
+        autoProcessQueue: false,
+        addRemoveLinks: true,
+        parallelUploads: 50
+        });
+
+        document.getElementById("uploadBtn").addEventListener("click", async () => {
+        if (dz.files.length === 0) {
+            alert("업로드할 파일이 없습니다.");
+            return;
+        }
+
+        const filenames = dz.files.map(f => f.name);
+        try {
+            const res = await axios.post(`/upload/presign/?bucket_name=${bucketName}`, filenames);
+            const urlMap = Object.fromEntries(res.data.presigned.map(p => [p.file, p.url]));
+
+            for (const file of dz.files) {
+            const url = urlMap[file.name];
+            if (!url) {
+                alert(`${file.name}에 대한 presigned URL이 없습니다.`);
+                continue;
+            }
+            await axios.put(url, file);
+            dz.emit("success", file);
+            }
+
+            dz.emit("queuecomplete");
+            alert("✅ 모든 파일 업로드 완료!");
+        } catch (e) {
+            console.error(e);
+            alert("❌ presigned URL 생성 또는 업로드 중 오류 발생");
+        }
+        });
+    </script>
+</body>
+</html>
