@@ -1,0 +1,15 @@
+source env311/bin/activate && cd fastapi-project-v0.1
+
+
+fastapi-projecvt-v0.1/
+├── app/
+│   ├── main.py
+│   ├── routers/
+│   │   └── file.py         # 파일 업로드/다운로드 API
+│   ├── services/
+│   │   └── minio_client.py # MinIO 연동 함수
+│   └── train/
+│       └── trainer.py      # YOLOv8 학습 코드
+├── Dockerfile
+├── docker-compose.yml
+└── requirements.txt
