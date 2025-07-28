@@ -20,7 +20,8 @@
     <h2>📤 YOLO 이미지 + 텍스트 업로더 (프록시 방식)</h2>
 
     <!-- Dropzone이 붙을 form -->
-    <form action="/upload/direct/?bucket_name=yolo-train" class="dropzone" id="yoloDropzone" method="post" enctype="multipart/form-data"></form>
+    <!-- <form action="/upload/direct/?bucket_name=yolo-train" class="dropzone" id="yoloDropzone" method="post" enctype="multipart/form-data"></form> -->
+    <form action="/upload/direct" class="dropzone" id="yoloDropzone" method="post" enctype="multipart/form-data"></form>
 
     <script>
         Dropzone.autoDiscover = false;
@@ -28,7 +29,7 @@
         const dz = new Dropzone("#yoloDropzone", {
         paramName: "file",        // FastAPI에서 받을 필드명
         autoProcessQueue: true,   // 드롭하자마자 업로드
-        uploadMultiple: false,    // 한 파일씩 전송
+        uploadMultiple: false,    // false가 되면 여러 파일 전송 가능
         maxFilesize: 50,          // MB
         acceptedFiles: ".jpg,.png,.svg,.txt",
         init: function () {

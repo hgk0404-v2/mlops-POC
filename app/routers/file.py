@@ -7,9 +7,10 @@ from app.services.minio_client import (
     list_files,
 )
 from io import BytesIO
+from zipfile import ZipFile
 from typing import List
 # """
-#     파일 업로드/다운로드 API
+#     파일 업로드, 다운로드, 삭제, 확인 API
 # """
 
 router = APIRouter()
@@ -85,20 +86,54 @@ def get_files():
     return {"files": list_files()}
 
 @router.delete("/delete/")
-def delete(image_name: str):
-    delete_file(image_name)
-    txt_name = image_name.rsplit('.', 1)[0] + '.txt'
-    delete_file(txt_name)
-    return {"msg": f"{image_name} and {txt_name} deleted"}
+def delete(
+    image_name: str = Query(..., description="삭제할 이미지 이름"),
+    bucket_name: str = Query(..., description="MinIO 버킷 이름")
+):
+    try:
+        delete_file(image_name, bucket_name)
+
+        # 대응하는 .txt 파일도 같이 삭제
+        txt_name = image_name.rsplit(".", 1)[0] + ".txt"
+        delete_file(txt_name, bucket_name)
+
+        return {"msg": f"{image_name} and {txt_name} deleted"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"삭제 실패: {str(e)}")
 
 @router.get("/download/")
-def download(file_name: str = Query(...), bucket_name: str = Query(...)):
+def download_zip(
+    file_name: str = Query(..., description="기준 파일명 (.jpg 등)"),
+    bucket_name: str = Query(..., description="MinIO 버킷 이름")
+):
     try:
-        file_data = download_file(file_name, bucket_name)
+        base_name = file_name.rsplit('.', 1)[0]
+        txt_name = f"{base_name}.txt"
+
+        files = []
+
+        # 메인 파일 (필수)
+        img_data = download_file(file_name, bucket_name)
+        files.append((file_name, img_data.read()))
+
+        # txt 파일 (선택)
+        try:
+            txt_data = download_file(txt_name, bucket_name)
+            files.append((txt_name, txt_data.read()))
+        except Exception:
+            pass  # .txt 없어도 무시
+
+        # ZIP으로 묶기
+        zip_stream = BytesIO()
+        with ZipFile(zip_stream, mode="w") as zf:
+            for fname, fbytes in files:
+                zf.writestr(fname, fbytes)
+        zip_stream.seek(0)
+
         return StreamingResponse(
-            BytesIO(file_data.read()),
-            media_type="application/octet-stream",
-            headers={"Content-Disposition": f"attachment; filename={file_name}"}
+            zip_stream,
+            media_type="application/zip",
+            headers={"Content-Disposition": f"attachment; filename={base_name}.zip"}
         )
     except Exception as e:
-        raise HTTPException(status_code=404, detail=f"File not found: {file_name}")
+        raise HTTPException(status_code=500, detail=f"Download error: {str(e)}")
