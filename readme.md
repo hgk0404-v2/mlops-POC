@@ -1,10 +1,11 @@
 ### 실행
-✅ 백그라운드 실행: docker-compose up -d --build
-✅ 실행: docker-compose up --build
-☑️ 모든 컨테이너 중지: docker-compose down
-☑️ 볼륨도 함께 제거: docker-compose down -v
+✅ 백그라운드 실행: docker-compose up -d --build <br>
+✅ 실행: docker-compose up --build <br>
+☑️ 모든 컨테이너 중지: docker-compose down <br>
+☑️ 볼륨도 함께 제거: docker-compose down -v <br>
 
 ### 디렉토리 구조
+"""
 fastapi-projecvt-v0.1/ <br>
 ├── app/ <br>
 │   ├── main.py <br>
@@ -24,4 +25,4 @@ fastapi-projecvt-v0.1/ <br>
 ├── requirements.txt <br>
 ├── .env <br>
 └── 시작.txt <br>
-
+"""
