@@ -17,9 +17,9 @@ fastapi-projecvt-v0.1/
 │   │   └── minio_client.py # MinIO 연동 함수
 │   ├── train/
 │   │   └── trainer.py      # YOLOv8 학습 코드
-│   └── static/ 
-│       └── uploader/
-│           └── index.html 
+├── static/ 
+│   └── uploader/
+│       └── index.html 
 ├── Dockerfile 
 ├── docker-compose.yml 
 ├── requirements.txt
