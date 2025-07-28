@@ -14,22 +14,11 @@ from typing import List
 
 router = APIRouter()
 
-# @router.post("/upload/")
-# async def upload_image(
-#     image: UploadFile = File(...), 
-#     annotation: UploadFile = File(...),
-#     bucket_name: str = Query(..., description="MinIO 버킷 이름")
-# ):
-#     if not image.filename.endswith(('.jpg', '.png', '.svg')):
-#         raise HTTPException(status_code=400, detail="Image file must be jpg/png/svg")
-#     if not annotation.filename.endswith('.txt'):
-#         raise HTTPException(status_code=400, detail="Annotation file must be .txt")
-
-#     upload_file(image.file, image.filename, bucket_name)
-#     upload_file(annotation.file, annotation.filename, bucket_name)
-#     return {"msg": f"{image.filename} and {annotation.filename} uploaded to {bucket_name}"}
-
-@router.post("/upload/")
+@router.post(
+        "/upload/",
+        summary="🚨 단일 파일 업로드(API 사용 ✅)",
+        description="하나의 파일 하나의 .txt만 업로드 가능"
+)
 async def upload_files(
     files: List[UploadFile] = File(..., description="업로드할 파일들 (jpg/png/svg 이미지와 txt 어노테이션)"),
     bucket_name: str = Query("yolo-train", description="MinIO 버킷 이름")
