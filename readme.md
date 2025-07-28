@@ -5,7 +5,7 @@
 ☑️ 볼륨도 함께 제거: docker-compose down -v <br>
 
 ### 디렉토리 구조
-"""
+```
 fastapi-projecvt-v0.1/ <br>
 ├── app/ <br>
 │   ├── main.py <br>
@@ -25,4 +25,4 @@ fastapi-projecvt-v0.1/ <br>
 ├── requirements.txt <br>
 ├── .env <br>
 └── 시작.txt <br>
-"""
+```
