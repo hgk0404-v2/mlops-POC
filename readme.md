@@ -8,21 +8,28 @@
 ```
 fastapi-projecvt-v0.1/
 ├── app/
-│   ├── main.py
 │   ├── routers/
 │   │   ├── __init__.py
-│   │   ├── upload_proxy.py
-│   │   └── file.py         # 파일 업로드/다운로드 API
+│   │   ├── file.py         # 파일 업로드/다운로드 API
+│   │   ├── preview.py         # 
+│   │   └── upload_proxy.py
 │   ├── services/
-│   │   └── minio_client.py # MinIO 연동 함수
+│   │   ├── minio_client.py # MinIO 연동 함수
+│   │   └── preview_renderer.py
 │   ├── train/
 │   │   └── trainer.py      # YOLOv8 학습 코드
+│   └── main.py
 ├── static/ 
 │   └── uploader/
-│       └── index.html 
-├── Dockerfile 
-├── docker-compose.yml 
-├── requirements.txt
-├── .env 
-└── 시작.txt
+│       └── index.html
+│       └── uploader.css 
+│   └── viewer/
+│       └── index.html
+│       └── viewer.css
+├── .env
+├── 시작.txt
+├── docker-compose.yaml
+├── Dockerfile.fastapi 
+├── readme.md 
+└── requirements.txt
 ```
