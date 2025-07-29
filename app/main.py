@@ -6,7 +6,7 @@ import uvicorn
 
 app = FastAPI(
     title="YOLOv8 MinIO API",
-    summary="뜬다.",
+    summary="minio 관련된 기능만 추가하는 것이 1차 목표",
 )
 app.include_router(api_router)
 app.mount("/uploader", StaticFiles(directory="static/uploader", html=True), name="uploader")

@@ -4,6 +4,6 @@ from .upload_proxy import router as upload_proxy_router
 from .preview import router as preview_router
 
 api_router = APIRouter()
-api_router.include_router(file_router)              # /upload/, /files/ ...
-api_router.include_router(upload_proxy_router)
-api_router.include_router(preview_router)
+api_router.include_router(file_router, tags=["📁 파일 관리"])     # /upload/, /files/ ...
+api_router.include_router(upload_proxy_router, tags=["📤 업로드"])
+api_router.include_router(preview_router, tags=["🖼️ 미리보기"])
