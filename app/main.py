@@ -6,10 +6,11 @@ import uvicorn
 
 app = FastAPI(
     title="YOLOv8 MinIO API",
-    summary="preview 넣었는데 왜 안뜨는데~~~",
+    summary="뜬다.",
 )
 app.include_router(api_router)
 app.mount("/uploader", StaticFiles(directory="static/uploader", html=True), name="uploader")
+app.mount("/viewer", StaticFiles(directory="static/viewer", html=True), name="viewer")
 
 @app.on_event("startup")
 async def startup_event():

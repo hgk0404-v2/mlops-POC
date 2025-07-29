@@ -28,7 +28,7 @@ services:
     
 
   minio-console:
-    image: quay.io/minio/console:v0.28.0
+    image: quay.io/minio/console:v0.30.0
     restart: always
     container_name: minio-console
     environment:

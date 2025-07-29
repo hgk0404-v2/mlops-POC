@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>YOLO 이미지 미리보기</title>
+    <link rel="stylesheet" href="viewer.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+        <h2>📂 업로드된 이미지 목록</h2>
+        <ul id="fileList"></ul>
+        </div>
+        <div class="resizer" id="resizer"></div>
+        <div class="preview">
+        <h2>🖼️ Preview</h2>
+        <img id="previewImg" src="" />
+        </div>
+    </div>
+
+    <script>
+        async function loadFiles() {
+        const res  = await fetch('/files/');
+        const data = await res.json();
+        const names = Array.isArray(data)
+            ? data.map(item => typeof item === 'string' ? item : item.object_name)
+            : (data.files || []);
+        const ul = document.getElementById('fileList');
+        ul.innerHTML = '';
+
+        names.filter(name => name.endsWith('.jpg')).forEach(name => {
+            const li = document.createElement('li');
+            li.textContent = name;
+            li.onclick = () => {
+            document.getElementById('previewImg').src = '/preview?image_name=' + name;
+            };
+            ul.appendChild(li);
+        });
+        }
+        loadFiles();
+        
+        const resizer = document.getElementById('resizer');
+        const sidebar = document.getElementById('sidebar');
+
+        resizer.addEventListener('mousedown', function (e) {
+            document.addEventListener('mousemove', resize);
+            document.addEventListener('mouseup', stopResize);
+        });
+
+        function resize(e) {
+            const newWidth = Math.min(Math.max(e.clientX, 150), 600); // 범위 제한
+            sidebar.style.width = newWidth + 'px';
+        }
+
+        function stopResize() {
+            document.removeEventListener('mousemove', resize);
+            document.removeEventListener('mouseup', stopResize);
+        }
+    </script>
+</body>
+
+</html>

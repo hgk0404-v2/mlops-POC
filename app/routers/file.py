@@ -1,3 +1,4 @@
+# routers/file.py
 from fastapi import APIRouter, UploadFile, File, HTTPException, Query
 from fastapi.responses import StreamingResponse
 from app.services.minio_client import (
@@ -14,6 +15,14 @@ from typing import List
 # """
 
 router = APIRouter()
+
+@router.get("/files", response_model=list[str])
+def get_files():
+    """
+    jpg/png/svg 등 오브젝트 풀네임 문자열만 반환
+    예: ["0000_46_5.jpg", "0000_46_5.txt", ...]
+    """
+    return list_files()          # 반드시 list[str] 형태로!
 
 @router.post(
         "/upload/",
@@ -80,10 +89,6 @@ async def upload_files(
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"파일 업로드 중 오류가 발생했습니다: {str(e)}")
-
-@router.get("/files/")
-def get_files():
-    return {"files": list_files()}
 
 @router.delete("/delete/")
 def delete(
