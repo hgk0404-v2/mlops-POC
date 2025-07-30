@@ -7,26 +7,55 @@
 </head>
 <body>
     <div class="container">
-        <div class="sidebar" id="sidebar">
-        <h2>📂 업로드된 이미지 목록</h2>
-        <input type="text" id="searchInput" placeholder="파일 이름 검색..." style="width: 90%; margin-bottom: 10px;" />
-        <select id="sortSelect" style="width: 90%; margin-bottom: 20px;">
-            <option value="upload_order">업로드 순</option>
-            <option value="name_asc">이름 오름차순</option>
-            <option value="name_desc">이름 내림차순</option>
-        </select>
+        <!-- =========================================
+                왼쪽: 사이드바 (업로드된 이미지 목록)
+                ========================================= -->
+        <div id="sidebar" class="sidebar">
+            <!-- 고정 영역 -->
+            <div class="sidebar-header">
+                <h2>📂 업로드된 이미지 목록</h2>
 
-        <ul id="fileList"></ul>
-        </div>
-        <div class="resizer" id="resizer"></div>
+                <!-- 🔍 검색창 -->
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="파일 이름 검색."
+                />
+
+                <!-- 정렬 드롭다운 -->
+                <select id="sortSelect">
+                    <option value="upload">업로드 순</option>
+                    <option value="asc">이름 오름차순</option>
+                    <option value="desc">이름 내림차순</option>
+                </select>
+
+                <!-- 🗑️ 일괄 삭제 버튼 -->
+                <button id="deleteSelected" class="delete-button">
+                    🗑️ 선택 삭제
+                </button>
+            </div>
+
+            <!-- 스크롤 가능한 리스트 영역 -->
+            <div id="fileList" class="scrollable-list">
+                <!-- JS( viewer.js )가 동적으로 채웁니다 -->
+            </div>
+        </div><!-- /sidebar -->
+
+        <!-- ★ 사이드바와 프리뷰 사이에 리사이저 막대 추가 -->
+        <div id="resizer" class="resizer"></div>
+
+        <!-- =========================================
+                오른쪽: 이미지 프리뷰
+                ========================================= -->
         <div class="preview">
-        <h2>🖼️ Preview</h2>
-        <img id="previewImg" src="" />
+            <h2>🖼️ Preview</h2>
+            <img id="previewImage" src="" alt="Preview" />
         </div>
     </div>
 
-
+    <!-- 스크립트 -->
+    <script src="viewer.js" defer></script>
 </body>
-<script src="viewer.js"></script>
+
 
 </html>

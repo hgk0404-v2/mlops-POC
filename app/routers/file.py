@@ -90,21 +90,43 @@ async def upload_files(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"파일 업로드 중 오류가 발생했습니다: {str(e)}")
 
-@router.delete("/delete/")
-def delete(
-    image_name: str = Query(..., description="삭제할 이미지 이름"),
-    bucket_name: str = Query(..., description="MinIO 버킷 이름")
-):
+# @router.delete("/delete/")
+# def delete(
+#     image_name: str = Query(..., description="삭제할 이미지 이름"),
+#     bucket_name: str = Query(..., description="MinIO 버킷 이름")
+# ):
+#     try:
+#         delete_file(image_name, bucket_name)
+
+#         # 대응하는 .txt 파일도 같이 삭제
+#         txt_name = image_name.rsplit(".", 1)[0] + ".txt"
+#         delete_file(txt_name, bucket_name)
+
+#         return {"msg": f"{image_name} and {txt_name} deleted"}
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=f"삭제 실패: {str(e)}")
+
+@router.delete("/delete")
+def delete_pair(image_name: str = Query(..., description="preview에서 이미지 삭제할 API")):
+    if not image_name.lower().endswith(".jpg"):
+        return {"error": "Only .jpg 파일만 삭제 대상입니다."}
+
+    txt_name = image_name.replace(".jpg", ".txt")
+    deleted = []
+
     try:
-        delete_file(image_name, bucket_name)
+        delete_file(image_name)
+        deleted.append(image_name)
+    except:
+        pass
 
-        # 대응하는 .txt 파일도 같이 삭제
-        txt_name = image_name.rsplit(".", 1)[0] + ".txt"
-        delete_file(txt_name, bucket_name)
+    try:
+        delete_file(txt_name)
+        deleted.append(txt_name)
+    except:
+        pass
 
-        return {"msg": f"{image_name} and {txt_name} deleted"}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"삭제 실패: {str(e)}")
+    return {"deleted": deleted}
 
 @router.get("/download/")
 def download_zip(
