@@ -23,9 +23,11 @@ fastapi-projecvt-v0.1/
 │   └── uploader/
 │       └── index.html
 │       └── uploader.css 
+│       └── uploader.js
 │   └── viewer/
 │       └── index.html
 │       └── viewer.css
+│       └── viewer.js
 ├── .env
 ├── 시작.txt
 ├── docker-compose.yaml
