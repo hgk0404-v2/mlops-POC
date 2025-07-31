@@ -27,7 +27,13 @@ fastapi-projecvt-v0.1/
 │   └── viewer/
 │       └── index.html
 │       └── viewer.css
-│       └── viewer.js
+│       └── delete.js
+│       └── files.js
+│       └── main.js
+│       └── render.js
+│       └── resize.js
+│       └── state.js
+│       └── viewer.js // 사용 ❌
 ├── .env
 ├── 시작.txt
 ├── docker-compose.yaml
