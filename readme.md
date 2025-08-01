@@ -1,3 +1,6 @@
+### test.minio-v2
+✅ 1. uploader 페이지 버킷별로 분리하여 업로드 하는 기능 추가
+
 ### 실행
 ✅ 백그라운드 실행: docker-compose up -d --build <br>
 ✅ 실행: docker-compose up --build <br>
