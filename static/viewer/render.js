@@ -3,6 +3,8 @@
 import { allFiles, selectedFiles } from './state.js';
 import { loadFiles, filterAndRender } from './files.js';
 
+// 파일 목록을 <ul>에 렌더링. 파일 이름, 체크박스, 삭제 버튼, 미리보기 포함
+// 호출 위치: file.js의 filterAndRender() 내부
 export function renderList(files) {
     const ul = document.getElementById("fileList");
     ul.innerHTML = "";

@@ -2,6 +2,8 @@
 import { selectedFiles } from './state.js';
 import { loadFiles } from './files.js';
 
+// 선택된 파일들만 모아서 /delete API로 모두 삭제. 삭제 후 목록 재로드
+// "🗑 선택 삭제" 버튼 클릭 시 main.js에서 연결
 export async function handleBulkDelete() {
     console.log("🔔 deleteSelected 클릭됨");
 

@@ -1,5 +1,6 @@
 // static/viewer/resize.js
-// 사이드바 폭 조절
+// 리사이저 마우스 이벤트 설정 (mousedown, mousemove, mouseup) -> 사이드바 너비 조절 가능하게 함
+// 호출위치: main.js 내 초기화 시점
 export function setupResizer() {
     const resizer = document.getElementById('resizer');
     const sidebar = document.getElementById('sidebar');
