@@ -1,19 +1,23 @@
+<!-- static/uploader/index.html -->
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8" />
-    <title>YOLO 업로더</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css"/>
-    <link rel="stylesheet" href="uploader.css"/>
+    <head>
+        <meta charset="UTF-8" />
+        <title>YOLO 업로더</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css"/>
+        <link rel="stylesheet" href="uploader.css"/>
     </head>
     <body>
-    <h2>📤 YOLO 이미지 + 텍스트 업로더 (프록시 방식)</h2>
+        <label for="bucketSelect">🪣 Bucket 선택:</label>
+        <select id="bucketSelect"></select>
+        <h2>📤 YOLO 이미지 + 텍스트 업로더 (프록시 방식)</h2>
 
-    <!-- Dropzone이 붙을 form -->
-    <form action="/upload/direct" class="dropzone" id="yoloDropzone" method="post" enctype="multipart/form-data">
-        <div class="dz-message"> 📁 여기에 드래그하거나 클릭해서 업로드하세요!</div>
-    </form>
-</body>
-<script src="uploader.js"></script>
+        <!-- Dropzone이 붙을 form -->
+        <form action="/upload/direct" class="dropzone" id="yoloDropzone" method="post" enctype="multipart/form-data">
+            <div class="dz-message"> 📁 여기에 드래그하거나 클릭해서 업로드하세요!</div>
+        </form>
+        <button id="clearBtn">🧹 목록 비우기</button>
+    </body>
+<script src="/uploader/uploader.js"></script>
 </html>

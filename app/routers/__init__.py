@@ -1,3 +1,4 @@
+# /app/routers/__init__.py
 from fastapi import APIRouter
 from .file import router as file_router
 from .upload_proxy import router as upload_proxy_router
@@ -7,3 +8,4 @@ api_router = APIRouter()
 api_router.include_router(file_router, tags=["📁 파일 관리"])     # /upload/, /files/ ...
 api_router.include_router(upload_proxy_router, tags=["📤 업로드"])
 api_router.include_router(preview_router, tags=["🖼️ 미리보기"])
+# api_router.incluee_router(bucket_list_router, tags=["🧺 버킷 불러오기"])

@@ -1,11 +1,12 @@
 # routers/file.py
-from fastapi import APIRouter, UploadFile, File, HTTPException, Query
-from fastapi.responses import StreamingResponse
+from fastapi import APIRouter, UploadFile, File, HTTPException, Query, Form
+from fastapi.responses import StreamingResponse, JSONResponse
 from app.services.minio_client import (
     upload_file,
     download_file,
     delete_file,
     list_files,
+    list_buckets
 )
 from io import BytesIO
 from zipfile import ZipFile
@@ -31,8 +32,8 @@ def get_files():
 )
 async def upload_files(
     files: List[UploadFile] = File(..., description="업로드할 파일들 (jpg/png/svg 이미지와 txt 어노테이션)"),
-    bucket_name: str = Query("yolo-train", description="MinIO 버킷 이름")
-    # bucket_name: str = Query(..., description="MinIO 버킷 이름")
+    # bucket_name: str = Query("yolo-train", description="MinIO 버킷 이름")
+    bucket_name: str = Form(..., description="MinIO 버킷 이름 (FormData에서 받아야 함)")
 ):
     image_files = []
     annotation_files = []
@@ -89,22 +90,6 @@ async def upload_files(
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"파일 업로드 중 오류가 발생했습니다: {str(e)}")
-
-# @router.delete("/delete/")
-# def delete(
-#     image_name: str = Query(..., description="삭제할 이미지 이름"),
-#     bucket_name: str = Query(..., description="MinIO 버킷 이름")
-# ):
-#     try:
-#         delete_file(image_name, bucket_name)
-
-#         # 대응하는 .txt 파일도 같이 삭제
-#         txt_name = image_name.rsplit(".", 1)[0] + ".txt"
-#         delete_file(txt_name, bucket_name)
-
-#         return {"msg": f"{image_name} and {txt_name} deleted"}
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=f"삭제 실패: {str(e)}")
 
 @router.delete("/delete")
 def delete_pair(image_name: str = Query(..., description="preview에서 이미지 삭제할 API")):
@@ -164,3 +149,11 @@ def download_zip(
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Download error: {str(e)}")
+
+@router.get("/buckets")
+def get_buckets():
+    try:
+        buckets = list_buckets()
+        return JSONResponse(content={"buckets": buckets})
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": str(e)})

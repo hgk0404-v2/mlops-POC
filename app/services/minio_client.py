@@ -28,8 +28,8 @@ def ensure_bucket():
         client.make_bucket(MINIO_BUCKET)
 
 # 파일 업로드
-def upload_file(file_data, file_name: str):
-    client.put_object(MINIO_BUCKET, file_name, file_data, length=-1, part_size=10*1024*1024)
+def upload_file(file_data, file_name: str, bucket_name: str):
+    client.put_object(bucket_name, file_name, file_data, length=-1, part_size=10*1024*1024)
 
 # 파일 목록 조회
 def list_files():
@@ -47,3 +47,7 @@ def get_object(file_name: str):
     return client.get_object(MINIO_BUCKET, file_name)
 
 print("✅ Loaded MINIO_BUCKET =", MINIO_BUCKET)
+
+# 버킷 목록 조회
+def list_buckets():
+    return [bucket.name for bucket in client.list_buckets()]
