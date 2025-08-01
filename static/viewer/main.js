@@ -1,12 +1,12 @@
 // static/viewer/main.js
 // 진입점 / 이벤트 등록 / 초기화
-import { loadFiles, filterAndRender } from './files.js';
+import { loadFiles, filterAndRender, loadBuckets } from './files.js';
 import { handleBulkDelete } from './delete.js';
 import { setupResizer } from './resize.js';
 
 console.log("✅ viewer 모듈 기반 JS 시작"); // F12 console에 시작 로그 출력
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     console.log("✅ DOM fully loaded");
 
     document.getElementById("deleteSelected").onclick = handleBulkDelete; // 선택삭제 버튼과 함수 연결
@@ -21,7 +21,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("searchInput").addEventListener("input", filterAndRender); // 입력 변화 시 필터링
     document.getElementById("sortSelect").addEventListener("change", filterAndRender); // 정렬 방식 변경시 필터링
 
-    loadFiles(); // 시작 시 목록 불러오기
+    document.getElementById("bucketSelect").addEventListener("change", async () => {
+        console.log("🔄 버킷 변경됨 → 파일 목록 다시 불러옴");
+        await loadFiles();
+    });
+
+    await loadBuckets();
+    await loadFiles();  // 버킷 선택 후 자동 호출
     setupResizer(); // 리사이저 이벤트 연결
 });
     // 📦 main.js

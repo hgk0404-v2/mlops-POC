@@ -18,12 +18,12 @@ from typing import List
 router = APIRouter()
 
 @router.get("/files", response_model=list[str])
-def get_files():
+def get_files(bucket_name: str = Query(...)):
     """
     jpg/png/svg 등 오브젝트 풀네임 문자열만 반환
     예: ["0000_46_5.jpg", "0000_46_5.txt", ...]
     """
-    return list_files()          # 반드시 list[str] 형태로!
+    return list_files(bucket_name)      # 반드시 list[str] 형태로!
 
 @router.post(
         "/upload/",

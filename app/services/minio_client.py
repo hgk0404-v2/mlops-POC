@@ -32,8 +32,8 @@ def upload_file(file_data, file_name: str, bucket_name: str):
     client.put_object(bucket_name, file_name, file_data, length=-1, part_size=10*1024*1024)
 
 # 파일 목록 조회
-def list_files():
-    return [obj.object_name for obj in client.list_objects(MINIO_BUCKET)]
+def list_files(bucket_name: str):
+    return [obj.object_name for obj in client.list_objects(bucket_name)]
 
 # 파일 다운로드
 def download_file(file_name: str, bucket_name: str):
@@ -43,8 +43,8 @@ def download_file(file_name: str, bucket_name: str):
 def delete_file(file_name: str):
     client.remove_object(MINIO_BUCKET, file_name)
 
-def get_object(file_name: str):
-    return client.get_object(MINIO_BUCKET, file_name)
+def get_object(file_name: str, bucket_name: str):
+    return client.get_object(bucket_name, file_name)
 
 print("✅ Loaded MINIO_BUCKET =", MINIO_BUCKET)
 

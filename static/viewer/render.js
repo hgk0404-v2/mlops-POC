@@ -36,7 +36,14 @@ export function renderList(files) {
         fileSpan.textContent = name + warning;
         fileSpan.style.cursor = "pointer";
         fileSpan.onclick = () => {
-            document.getElementById("previewImage").src = "/preview?image_name=" + name;
+            const bucket = document.getElementById("bucketSelect").value;
+            if (!bucket) {
+                alert("버킷을 선택해주세요.");
+                return;
+            }
+            const url = `/preview?image_name=${encodeURIComponent(name)}&bucket_name=${encodeURIComponent(bucket)}`;
+            console.log("🖼️ Preview 요청:", url);
+            document.getElementById("previewImage").src = url;
         };
 
         const deleteBtn = document.createElement("button");
