@@ -73,7 +73,7 @@ fastapi-projecvt-v0.1/
 - 2-2. 000000000127.jpg
 <img width="1911" height="1028" alt="Image" src="https://github.com/user-attachments/assets/16725a8f-42a3-43e6-adaf-e5fd3601d965" />
 
-**클래스 라벨링: ** 
+**클래스 라벨링: **  
 
 ```txt
 58 0.384211 0.176424 0.101078 0.146778
