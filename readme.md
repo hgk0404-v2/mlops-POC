@@ -49,19 +49,16 @@ fastapi-projecvt-v0.1/
 <br>
 
 ## 구현 이미지
-모든 이미지는 coco2017 이미지를 사용하였습니다.
+모든 이미지는 coco2017 이미지를 사용하였습니다. <br>
 ### 1. 이미지 업로드 upload
 <img width="1913" height="1030" alt="Image" src="https://github.com/user-attachments/assets/b87cd2eb-ad5d-4d37-a053-51315f8a297c" />
 
-<br>
 
 ### 2. 업로드된 이미지 preview
-각기 다른 클래스는 다른 색상으로 인식해서 preview 제공
+- 각기 다른 클래스는 다른 색상으로 인식해서 preview 제공
 
-2-1. 000000000036.jpg
-<img width="1914" height="1029" alt="Image" src="https://github.com/user-attachments/assets/5d179ae0-a501-4684-8d7e-b39731707f70" 
-    style="border: 1px solid #ccc; border-radius: 6px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);"
-/>
+2-1. 🖼️ 000000000036.jpg
+<img width="1914" height="1029" alt="Image" src="https://github.com/user-attachments/assets/5d179ae0-a501-4684-8d7e-b39731707f70" />
 
 **클래스 라벨링:**  
 
@@ -69,17 +66,16 @@ fastapi-projecvt-v0.1/
 25 0.475759 0.414523 0.951518 0.672422
 0 0.671279 0.617945 0.645759 0.726859
 ```
-```
-- 0 person
-- 25 umbrella
+class 설명
+```txt
+0 person
+25 umbrella
 ```
 
 <br>
 
-2-2. 000000000127.jpg
-<img width="1911" height="1028" alt="Image" src="https://github.com/user-attachments/assets/16725a8f-42a3-43e6-adaf-e5fd3601d965" 
-    style="border: 1px solid #ccc; border-radius: 6px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);"
-/>
+2-2. 🖼️ 000000000127.jpg
+<img width="1911" height="1028" alt="Image" src="https://github.com/user-attachments/assets/16725a8f-42a3-43e6-adaf-e5fd3601d965" />
 
 **클래스 라벨링:**  
 
