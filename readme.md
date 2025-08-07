@@ -1,14 +1,14 @@
-### test.minio-v2
+## test.minio-v2
 ✅ 1. uploader 페이지 버킷별로 분리하여 업로드 하는 기능 추가 <br>
 ✅ 2. viewer 페이지 버킷별로 분리하여 업로드 하는 기능 추가
 
-### 실행
+## 실행
 ✅ 백그라운드 실행: docker-compose up -d --build <br>
 ✅ 실행: docker-compose up --build <br>
 ☑️ 모든 컨테이너 중지: docker-compose down <br>
 ☑️ 볼륨도 함께 제거: docker-compose down -v <br>
 
-### 디렉토리 구조
+## 디렉토리 구조
 ```
 fastapi-projecvt-v0.1/
 ├── app/
@@ -46,30 +46,32 @@ fastapi-projecvt-v0.1/
 └── requirements.txt
 ```
 
-### 구현 이미지
+## 구현 이미지
 모든 이미지는 coco2017 이미지를 사용하였습니다.
-1. 이미지 업로드 upload
+### 1. 이미지 업로드 upload
 <img width="1913" height="1030" alt="Image" src="https://github.com/user-attachments/assets/b87cd2eb-ad5d-4d37-a053-51315f8a297c" />
 
 <br>
 
-2. 업로드된 이미지 preview
+### 2. 업로드된 이미지 preview
 각기 다른 클래스는 다른 색상으로 인식해서 preview 제공
+
 - 2-1.
 <img width="1914" height="1029" alt="Image" src="https://github.com/user-attachments/assets/5d179ae0-a501-4684-8d7e-b39731707f70" />
-000000000036.jpg 이미지의 클래스 라벨링
-```
+**000000000036.jpg 이미지의 클래스 라벨링**
+
+```txt
 25 0.475759 0.414523 0.951518 0.672422
 0 0.671279 0.617945 0.645759 0.726859
 ```
-0 person
-25 umbrella
+- 0 person
+- 25 umbrella
 
 - 2-2. 
 <img width="1911" height="1028" alt="Image" src="https://github.com/user-attachments/assets/16725a8f-42a3-43e6-adaf-e5fd3601d965" />
+**000000000127.jpg 이미지의 클래스 라벨링**
 
-
-```
+```txt
 58 0.384211 0.176424 0.101078 0.146778
 60 0.58357 0.652942 0.831141 0.694116
 41 0.741516 0.589574 0.289375 0.259356
