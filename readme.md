@@ -60,6 +60,7 @@ fastapi-projecvt-v0.1/
 <img width="1914" height="1029" alt="Image" src="https://github.com/user-attachments/assets/5d179ae0-a501-4684-8d7e-b39731707f70" />
 
 **클래스 라벨링: **
+
 ```txt
 25 0.475759 0.414523 0.951518 0.672422
 0 0.671279 0.617945 0.645759 0.726859
@@ -72,7 +73,8 @@ fastapi-projecvt-v0.1/
 - 2-2. 000000000127.jpg
 <img width="1911" height="1028" alt="Image" src="https://github.com/user-attachments/assets/16725a8f-42a3-43e6-adaf-e5fd3601d965" />
 
-**클래스 라벨링: **
+**클래스 라벨링: ** 
+
 ```txt
 58 0.384211 0.176424 0.101078 0.146778
 60 0.58357 0.652942 0.831141 0.694116
