@@ -41,9 +41,11 @@ export function renderList(files) {
                 alert("버킷을 선택해주세요.");
                 return;
             }
-            const url = `/preview?image_name=${encodeURIComponent(name)}&bucket_name=${encodeURIComponent(bucket)}`;
+            const url =
+                `/preview?image_name=${encodeURIComponent(name)}` + `&bucket_name=${encodeURIComponent(bucket)}`;
             console.log("🖼️ Preview 요청:", url);
             document.getElementById("previewImage").src = url;
+            document.getElementById("previewLabel").textContent = name;
         };
 
         const deleteBtn = document.createElement("button");

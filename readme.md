@@ -45,3 +45,21 @@ fastapi-projecvt-v0.1/
 ├── readme.md 
 └── requirements.txt
 ```
+
+### 구현 이미지
+모든 이미지는 coco2017 이미지를 사용하였습니다.
+1. 이미지 업로드 upload
+<img width="1913" height="1030" alt="Image" src="https://github.com/user-attachments/assets/b87cd2eb-ad5d-4d37-a053-51315f8a297c" />
+
+<br>
+
+2. 업로드된 이미지 preview
+<br>
+1) 
+<img width="1914" height="1029" alt="Image" src="https://github.com/user-attachments/assets/5d179ae0-a501-4684-8d7e-b39731707f70" />
+<br>
+2)
+<img width="1911" height="1028" alt="Image" src="https://github.com/user-attachments/assets/16725a8f-42a3-43e6-adaf-e5fd3601d965" />
+<br>
+
+

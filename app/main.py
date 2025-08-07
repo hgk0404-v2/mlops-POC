@@ -12,9 +12,9 @@ app.include_router(api_router)
 app.mount("/uploader", StaticFiles(directory="static/uploader", html=True), name="uploader")
 app.mount("/viewer", StaticFiles(directory="static/viewer", html=True), name="viewer")
 
-@app.on_event("startup")
-async def startup_event():
-    ensure_bucket()
+# @app.on_event("startup")
+# async def startup_event():
+#     ensure_bucket()
 
 # if __name__ == "__main__":
 #     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

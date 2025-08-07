@@ -96,3 +96,22 @@ body {
     cursor: pointer;
     font-weight: bold;
 }
+
+/* preview 위 사진 정보 출력 css */
+.preview-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.preview-label {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    padding: 2px 6px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 5;            /* ★ 이미지보다 한 단계 위로 */
+}

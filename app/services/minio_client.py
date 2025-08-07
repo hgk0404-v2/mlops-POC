@@ -22,6 +22,15 @@ client = Minio(
     secret_key=MINIO_SECRET_KEY,
     secure=False,
 )
+# ────────────────────────── MinIO Helper ──────────────────────────
+def create_bucket(bucket_name: str):
+    if not client.bucket_exists(bucket_name):
+        client.make_bucket(bucket_name)
+
+# 버킷 목록 조회
+def list_buckets():
+    return [b.name for b in client.list_buckets()]
+
 # 버킷이 없다면 생성
 def ensure_bucket():
     if not client.bucket_exists(MINIO_BUCKET):
@@ -40,14 +49,13 @@ def download_file(file_name: str, bucket_name: str):
     return client.get_object(bucket_name, file_name)
 
 # 파일 삭제
-def delete_file(file_name: str):
-    client.remove_object(MINIO_BUCKET, file_name)
-
+# def delete_file(file_name: str):
+#     client.remove_object(MINIO_BUCKET, file_name)
+def delete_file(file_name: str, bucket_name: str):
+    client.remove_object(bucket_name, file_name)
+    
 def get_object(file_name: str, bucket_name: str):
     return client.get_object(bucket_name, file_name)
 
 print("✅ Loaded MINIO_BUCKET =", MINIO_BUCKET)
 
-# 버킷 목록 조회
-def list_buckets():
-    return [bucket.name for bucket in client.list_buckets()]
