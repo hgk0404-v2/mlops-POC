@@ -45,7 +45,7 @@ export function renderList(files) {
                 `/preview?image_name=${encodeURIComponent(name)}` + `&bucket_name=${encodeURIComponent(bucket)}`;
             console.log("🖼️ Preview 요청:", url);
             document.getElementById("previewImage").src = url;
-            document.getElementById("previewLabel").textContent = name;
+            document.getElementById("previewLabel").textContent = name; // ✅ 파일 이름 라벨 표시
         };
 
         const deleteBtn = document.createElement("button");
