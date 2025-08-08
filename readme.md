@@ -56,7 +56,7 @@ fastapi-projecvt-v0.1/
 <br>
 
 ### 2. 이미지 업로드 upload
-<img width="1913" height="1030" alt="Image" src="https://github.com/user-attachments/assets/b87cd2eb-ad5d-4d37-a053-51315f8a297c" />
+<img width="1911" height="991" alt="Image" src="https://github.com/user-attachments/assets/85957ca4-0aae-4bd2-abac-de0c5d2988fb" />
 
 
 ### 3. 업로드된 이미지 preview
