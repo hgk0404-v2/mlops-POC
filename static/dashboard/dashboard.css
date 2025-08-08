@@ -1,122 +1,122 @@
 /* --- Base: 변수/리셋 ------------------------------------------------------ */
 :root{
-  --bg: #f7f7fb;
-  --card: #ffffff;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --primary: #4f46e5;    /* indigo */
-  --primary-600:#4338ca;
-  --accent: #10b981;     /* emerald */
-  --danger: #ef4444;     /* red */
-  --border: #e5e7eb;
-  --shadow: 0 10px 25px rgba(0,0,0,.06);
-  --radius: 16px;
-  --radius-sm: 10px;
-  --transition: .18s ease;
+    --bg: #f7f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --primary: #4f46e5;    /* indigo */
+    --primary-600:#4338ca;
+    --accent: #10b981;     /* emerald */
+    --danger: #ef4444;     /* red */
+    --border: #e5e7eb;
+    --shadow: 0 10px 25px rgba(0,0,0,.06);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: .18s ease;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root{
-    --bg: #0b1020;
-    --card: #12172a;
-    --text: #e5e7eb;
-    --muted: #94a3b8;
-    --primary: #7c83ff;
-    --primary-600:#9aa0ff;
-    --accent: #34d399;
-    --danger: #f87171;
-    --border: #1f2942;
-    --shadow: 0 10px 25px rgba(0,0,0,.35);
-  }
+    :root{
+        --bg: #0b1020;
+        --card: #12172a;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --primary: #7c83ff;
+        --primary-600:#9aa0ff;
+        --accent: #34d399;
+        --danger: #f87171;
+        --border: #1f2942;
+        --shadow: 0 10px 25px rgba(0,0,0,.35);
+    }
 }
 
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 body {
-  margin: 0;
-  padding: 32px;
-  background: radial-gradient(1200px 800px at 80% -10%, rgba(79,70,229,.10), transparent 60%) , var(--bg);
-  color: var(--text);
-  font: 15px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+    margin: 0;
+    padding: 32px;
+    background: radial-gradient(1200px 800px at 80% -10%, rgba(79,70,229,.10), transparent 60%) , var(--bg);
+    color: var(--text);
+    font: 15px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
 }
 
 /* --- Header --------------------------------------------------------------- */
 header{
-  display:flex; align-items:center; justify-content:space-between;
-  max-width: 1100px; margin: 0 auto 22px;
+    display:flex; align-items:center; justify-content:space-between;
+    max-width: 1100px; margin: 0 auto 22px;
 }
 h1{
-  font-size: clamp(22px, 3vw, 32px);
-  margin: 0;
-  letter-spacing: .2px;
+    font-size: clamp(22px, 3vw, 32px);
+    margin: 0;
+    letter-spacing: .2px;
 }
 nav{ display:flex; gap:10px; }
 nav a{
-  display:inline-flex; align-items:center; gap:8px;
-  padding: 10px 14px;
-  border-radius: 999px;
-  text-decoration: none;
-  color: var(--primary-600);
-  background: rgba(79,70,229,.10);
-  border: 1px solid rgba(79,70,229,.18);
-  transition: transform var(--transition), background var(--transition), border-color var(--transition);
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--primary-600);
+    background: rgba(79,70,229,.10);
+    border: 1px solid rgba(79,70,229,.18);
+    transition: transform var(--transition), background var(--transition), border-color var(--transition);
 }
 nav a:hover{
-  transform: translateY(-1px);
-  background: rgba(79,70,229,.18);
-  border-color: rgba(79,70,229,.28);
+    transform: translateY(-1px);
+    background: rgba(79,70,229,.18);
+    border-color: rgba(79,70,229,.28);
 }
 
 /* --- Card / Panel --------------------------------------------------------- */
 main{ max-width:1100px; margin:0 auto; }
 .panel{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
 }
 
 /* --- Controls ------------------------------------------------------------- */
 .row{ display:flex; gap:10px; margin: 12px 0; flex-wrap: wrap; }
 
 input[type="text"], input:not([type]){
-  height: 40px; padding: 0 12px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text);
-  outline: none;
-  transition: border-color var(--transition), box-shadow var(--transition);
+    height: 40px; padding: 0 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    outline: none;
+    transition: border-color var(--transition), box-shadow var(--transition);
 }
 input:focus{
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(79,70,229,.12);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(79,70,229,.12);
 }
 
 button{
-  height: 40px; padding: 0 14px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: linear-gradient(to bottom, #ffffff80, #ffffff20);
-  color: var(--text);
-  cursor: pointer;
-  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+    height: 40px; padding: 0 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: linear-gradient(to bottom, #ffffff80, #ffffff20);
+    color: var(--text);
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
 }
 button:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
 button:active{ transform: translateY(0); }
 
 #refreshBtn{
-  background: linear-gradient(180deg, rgba(16,185,129,.12), rgba(16,185,129,.05));
-  border-color: rgba(16,185,129,.25);
-  color: var(--accent);
+    background: linear-gradient(180deg, rgba(16,185,129,.12), rgba(16,185,129,.05));
+    border-color: rgba(16,185,129,.25);
+    color: var(--accent);
 }
 #refreshBtn:hover{ border-color: rgba(16,185,129,.45); }
 
 #createBtn{
-  background: linear-gradient(180deg, rgba(79,70,229,.12), rgba(79,70,229,.05));
-  border-color: rgba(79,70,229,.25);
-  color: var(--primary-600);
+    background: linear-gradient(180deg, rgba(79,70,229,.12), rgba(79,70,229,.05));
+    border-color: rgba(79,70,229,.25);
+    color: var(--primary-600);
 }
 #createBtn:hover{ border-color: rgba(79,70,229,.45); }
 
@@ -174,4 +174,50 @@ small{
     tbody tr{ display:grid; grid-template-columns: 1fr auto; gap: 8px; }
     tbody td{ border-bottom: none; }
     tbody td:last-child{ justify-self: end; }
+}
+/* 스크롤 컨테이너 */
+.bucket-table-wrap{
+    margin-top: 12px;
+    max-height: min(60vh, 520px);  /* 화면 60% 또는 520px 중 더 작은 값 */
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--card);
+    box-shadow: inset 0 1px 0 rgba(0,0,0,.03);
+}
+
+/* 테이블 기본 */
+.bucket-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* 헤더를 스크롤 상단에 고정 */
+.bucket-table thead th{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 12px;
+    font-weight: 700;
+    color: var(--muted);
+}
+
+/* 바디 셀/행 */
+.bucket-table tbody td{
+    padding: 12px;
+    border-bottom: 1px dashed var(--border);
+}
+.bucket-table tbody tr:hover{
+    background: rgba(79,70,229,.06);
+}
+
+/* 열 너비(선택) */
+.bucket-table colgroup col.name{ width: auto; }
+.bucket-table colgroup col.actions{ width: 120px; }
+
+/* 모바일에서 높이 살짝 낮추기 */
+@media (max-width: 640px){
+    .bucket-table-wrap{ max-height: 50vh; }
 }

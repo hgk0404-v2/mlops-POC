@@ -29,18 +29,17 @@
         <div class="row">
             <button id="refreshBtn">버킷 목록 새로고침</button>
         </div>
-
-        <table id="bucketTable">
-            <thead>
-            <tr>
-                <th>버킷명</th>
-                <th>동작</th>
-            </tr>
-            </thead>
-            <tbody id="bucketTbody">
-            <!-- JS가 채움 -->
-            </tbody>
-        </table>
+        <div class="bucket-table-wrap">
+            <table id="bucketTable" class="bucket-table">
+                <thead>
+                <tr>
+                    <th>버킷명</th>
+                    <th>동작</th>
+                </tr>
+                </thead>
+                <tbody id="bucketTbody"><!-- JS가 채움 --></tbody>
+            </table>
+        </div>
         <small>※ 비어있지 않은 버킷은 기본 삭제가 안 됩니다. “강제 삭제”를 사용하면 안의 객체를 모두 지우고 버킷을 삭제합니다.</small>
         </section>
     </main>
