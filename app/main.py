@@ -11,6 +11,7 @@ app = FastAPI(
 app.include_router(api_router)
 app.mount("/uploader", StaticFiles(directory="static/uploader", html=True), name="uploader")
 app.mount("/viewer", StaticFiles(directory="static/viewer", html=True), name="viewer")
+app.mount("/dashboard", StaticFiles(directory="static/dashboard", html=True), name="dashboard")
 
 # @app.on_event("startup")
 # async def startup_event():

@@ -1,0 +1,50 @@
+<!-- static/dashboard/index.html -->
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>통합 대시보드</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./dashboard.css" />
+</head>
+<body>
+    <header>
+        <h1>통합 대시보드</h1>
+        <nav>
+        <!-- 요구사항 1: 업로드/뷰어 페이지로 이동 -->
+<a href="/uploader/index.html">업로드 페이지 열기</a>
+<a href="/viewer/index.html">뷰어 페이지 열기</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="panel">
+        <h2>버킷 만들기 / 삭제하기</h2>
+
+        <div class="row">
+            <input id="bucketNameInput" placeholder="버킷 이름 입력" />
+            <button id="createBtn">버킷 생성</button>
+        </div>
+
+        <div class="row">
+            <button id="refreshBtn">버킷 목록 새로고침</button>
+        </div>
+
+        <table id="bucketTable">
+            <thead>
+            <tr>
+                <th>버킷명</th>
+                <th>동작</th>
+            </tr>
+            </thead>
+            <tbody id="bucketTbody">
+            <!-- JS가 채움 -->
+            </tbody>
+        </table>
+        <small>※ 비어있지 않은 버킷은 기본 삭제가 안 됩니다. “강제 삭제”를 사용하면 안의 객체를 모두 지우고 버킷을 삭제합니다.</small>
+        </section>
+    </main>
+
+    <script src="./dashboard.js"></script>
+</body>
+</html>

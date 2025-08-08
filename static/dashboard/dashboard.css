@@ -1,0 +1,177 @@
+/* --- Base: 변수/리셋 ------------------------------------------------------ */
+:root{
+  --bg: #f7f7fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #4f46e5;    /* indigo */
+  --primary-600:#4338ca;
+  --accent: #10b981;     /* emerald */
+  --danger: #ef4444;     /* red */
+  --border: #e5e7eb;
+  --shadow: 0 10px 25px rgba(0,0,0,.06);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: .18s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root{
+    --bg: #0b1020;
+    --card: #12172a;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --primary: #7c83ff;
+    --primary-600:#9aa0ff;
+    --accent: #34d399;
+    --danger: #f87171;
+    --border: #1f2942;
+    --shadow: 0 10px 25px rgba(0,0,0,.35);
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  padding: 32px;
+  background: radial-gradient(1200px 800px at 80% -10%, rgba(79,70,229,.10), transparent 60%) , var(--bg);
+  color: var(--text);
+  font: 15px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+}
+
+/* --- Header --------------------------------------------------------------- */
+header{
+  display:flex; align-items:center; justify-content:space-between;
+  max-width: 1100px; margin: 0 auto 22px;
+}
+h1{
+  font-size: clamp(22px, 3vw, 32px);
+  margin: 0;
+  letter-spacing: .2px;
+}
+nav{ display:flex; gap:10px; }
+nav a{
+  display:inline-flex; align-items:center; gap:8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--primary-600);
+  background: rgba(79,70,229,.10);
+  border: 1px solid rgba(79,70,229,.18);
+  transition: transform var(--transition), background var(--transition), border-color var(--transition);
+}
+nav a:hover{
+  transform: translateY(-1px);
+  background: rgba(79,70,229,.18);
+  border-color: rgba(79,70,229,.28);
+}
+
+/* --- Card / Panel --------------------------------------------------------- */
+main{ max-width:1100px; margin:0 auto; }
+.panel{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+/* --- Controls ------------------------------------------------------------- */
+.row{ display:flex; gap:10px; margin: 12px 0; flex-wrap: wrap; }
+
+input[type="text"], input:not([type]){
+  height: 40px; padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+input:focus{
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(79,70,229,.12);
+}
+
+button{
+  height: 40px; padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: linear-gradient(to bottom, #ffffff80, #ffffff20);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+}
+button:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
+button:active{ transform: translateY(0); }
+
+#refreshBtn{
+  background: linear-gradient(180deg, rgba(16,185,129,.12), rgba(16,185,129,.05));
+  border-color: rgba(16,185,129,.25);
+  color: var(--accent);
+}
+#refreshBtn:hover{ border-color: rgba(16,185,129,.45); }
+
+#createBtn{
+  background: linear-gradient(180deg, rgba(79,70,229,.12), rgba(79,70,229,.05));
+  border-color: rgba(79,70,229,.25);
+  color: var(--primary-600);
+}
+#createBtn:hover{ border-color: rgba(79,70,229,.45); }
+
+/* --- Table --------------------------------------------------------------- */
+table{ 
+    width:100%; 
+    border-collapse: collapse; 
+    margin-top: 16px; 
+}
+thead th{
+    font-weight: 700; 
+    color: var(--muted);
+    border-bottom: 1px solid var(--border); 
+    padding: 12px;
+}
+tbody td{
+    padding: 14px 12px;
+    border-bottom: 1px dashed var(--border);
+}
+tbody tr{
+    transition: background var(--transition);
+}
+tbody tr:hover{
+    background: rgba(79,70,229,.06);
+}
+
+tbody td:first-child{
+    font-weight: 600;
+    letter-spacing: .2px;
+}
+
+/* 삭제 버튼 (JS에서 class="del") */
+button.del{
+    color: var(--danger);
+    background: linear-gradient(180deg, rgba(239,68,68,.08), rgba(239,68,68,.03));
+    border-color: rgba(239,68,68,.25);
+}
+button.del:hover{
+    border-color: rgba(239,68,68,.45);
+}
+
+/* --- Footer note --------------------------------------------------------- */
+small{
+    display:block;
+    margin-top: 12px;
+    color: var(--muted);
+}
+
+/* --- Responsive ---------------------------------------------------------- */
+@media (max-width: 640px){
+    body{ padding: 18px; }
+    .row{ gap:8px; }
+    button, input{ width: 100%; }
+    thead{ display:none; }
+    tbody tr{ display:grid; grid-template-columns: 1fr auto; gap: 8px; }
+    tbody td{ border-bottom: none; }
+    tbody td:last-child{ justify-self: end; }
+}
