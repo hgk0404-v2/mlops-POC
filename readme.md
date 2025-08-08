@@ -50,15 +50,20 @@ fastapi-projecvt-v0.1/
 
 ## 구현 이미지
 모든 이미지는 coco2017 이미지를 사용하였습니다. <br>
-### 1. 이미지 업로드 upload
+
+### 1. 통합 대시보드
+<img width="1917" height="990" alt="Image" src="https://github.com/user-attachments/assets/03bc40ef-e2f2-4deb-b374-f776f07cf46c" />
+<br>
+
+### 2. 이미지 업로드 upload
 <img width="1913" height="1030" alt="Image" src="https://github.com/user-attachments/assets/b87cd2eb-ad5d-4d37-a053-51315f8a297c" />
 
 
-### 2. 업로드된 이미지 preview
+### 3. 업로드된 이미지 preview
 - 각기 다른 클래스는 다른 색상으로 인식해서 preview 제공
 
-2-1. 🖼️ 000000000036.jpg
-<img width="1914" height="1029" alt="Image" src="https://github.com/user-attachments/assets/5d179ae0-a501-4684-8d7e-b39731707f70" />
+3-1. 🖼️ 000000000036.jpg
+<img width="1897" height="985" alt="Image" src="https://github.com/user-attachments/assets/913007aa-354e-499e-8f5d-3d7a8e179efe" />
 
 **클래스 라벨링:**  
 
@@ -74,8 +79,8 @@ fastapi-projecvt-v0.1/
 
 <br>
 
-2-2. 🖼️ 000000000127.jpg
-<img width="1911" height="1028" alt="Image" src="https://github.com/user-attachments/assets/16725a8f-42a3-43e6-adaf-e5fd3601d965" />
+3-2. 🖼️ 000000000127.jpg
+<img width="1912" height="999" alt="Image" src="https://github.com/user-attachments/assets/f25a3355-eab9-46dc-acbb-85f4ae0ff151" />
 
 **클래스 라벨링:**  
 
