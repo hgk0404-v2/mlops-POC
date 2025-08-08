@@ -17,9 +17,11 @@ export async function handleBulkDelete() {
         [...selectedFiles].join('\n');
     if (!confirm(confirmMsg)) return;
 
-    for (const name of selectedFiles)
-        await fetch(`/delete?image_name=${encodeURIComponent(name)}`, { method: 'DELETE' });
-
+    for (const name of selectedFiles) {
+        const bucket = document.getElementById('bucketSelect').value;
+        const url = `${window.location.origin}/delete?image_name=${encodeURIComponent(name)}&bucket_name=${encodeURIComponent(bucket)}`;
+        await fetch(url, { method: 'DELETE' })
+    }
     selectedFiles.clear();
     loadFiles();
 }

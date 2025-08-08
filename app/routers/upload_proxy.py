@@ -1,6 +1,6 @@
 # app/routers/upload_proxy.py
 from fastapi import APIRouter, UploadFile, File, Query, Form
-from app.services.minio_client import upload_file, ensure_bucket
+from app.services.minio_client import upload_file
 
 router = APIRouter()
 

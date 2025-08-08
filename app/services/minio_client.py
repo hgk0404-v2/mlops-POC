@@ -48,11 +48,6 @@ def delete_bucket(bucket_name: str, force: bool = False):
         _empty_bucket(bucket_name)
     client.remove_bucket(bucket_name)
 
-# 버킷이 없다면 생성
-def ensure_bucket():
-    if not client.bucket_exists(MINIO_BUCKET):
-        client.make_bucket(MINIO_BUCKET)
-
 # 파일 업로드
 def upload_file(file_data, file_name: str, bucket_name: str):
     client.put_object(bucket_name, file_name, file_data, length=-1, part_size=10*1024*1024)
@@ -65,9 +60,23 @@ def list_files(bucket_name: str):
 def download_file(file_name: str, bucket_name: str):
     return client.get_object(bucket_name, file_name)
 
-# 파일 삭제
-# def delete_file(file_name: str):
-#     client.remove_object(MINIO_BUCKET, file_name)
+# 파일 삭제 (이미지 + 어노테이션)
+def delete_file_with_annotation(file_name: str, bucket_name: str):
+    # 이미지 삭제
+    client.remove_object(bucket_name, file_name)
+
+    # txt 어노테이션 파일명 만들기
+    base_name, _ = os.path.splitext(file_name)
+    txt_file_name = f"{base_name}.txt"
+
+    # txt 파일이 존재할 경우 삭제
+    try:
+        client.remove_object(bucket_name, txt_file_name)
+    except S3Error as e:
+        if e.code != "NoSuchKey":
+            raise
+
+# [추가] 단일 파일 삭제 헬퍼
 def delete_file(file_name: str, bucket_name: str):
     client.remove_object(bucket_name, file_name)
 

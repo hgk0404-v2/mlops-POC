@@ -4,9 +4,9 @@ from fastapi.responses import StreamingResponse, JSONResponse
 from app.services.minio_client import (
     upload_file,
     download_file,
-    delete_file,
+    delete_file_with_annotation,
     list_files,
-    list_buckets
+    list_buckets,
 )
 from io import BytesIO
 from zipfile import ZipFile
@@ -92,26 +92,17 @@ async def upload_files(
         raise HTTPException(status_code=500, detail=f"파일 업로드 중 오류가 발생했습니다: {str(e)}")
 
 @router.delete("/delete")
-def delete_pair(image_name: str = Query(..., description="preview에서 이미지 삭제할 API")):
-    if not image_name.lower().endswith(".jpg"):
-        return {"error": "Only .jpg 파일만 삭제 대상입니다."}
+def delete_pair(
+    image_name: str = Query(..., description="미리보기에서 선택한 이미지 파일명(.jpg)"),
+    bucket_name: str = Query(..., description="삭제할 MinIO 버킷 이름"),
+):
+    if not image_name.lower().endswith((".jpg", ".jpeg", ".png", ".svg")):
+        raise HTTPException(status_code=400, detail="Only 이미지 파일(jpg/png/svg)만 삭제 대상입니다.")
 
-    txt_name = image_name.replace(".jpg", ".txt")
-    deleted = []
-
-    try:
-        delete_file(image_name)
-        deleted.append(image_name)
-    except:
-        pass
-
-    try:
-        delete_file(txt_name)
-        deleted.append(txt_name)
-    except:
-        pass
-
-    return {"deleted": deleted}
+    # 이미지 + 같은 이름의 .txt까지 같이 삭제 (txt 없으면 무시)
+    delete_file_with_annotation(image_name, bucket_name)
+    base = image_name.rsplit('.', 1)[0]
+    return {"deleted": [image_name, f"{base}.txt"]}
 
 @router.get("/download/")
 def download_zip(

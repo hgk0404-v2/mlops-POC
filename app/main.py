@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from app.routers import api_router
 from fastapi.staticfiles import StaticFiles
-from app.services.minio_client import ensure_bucket
 import uvicorn
 
 app = FastAPI(
