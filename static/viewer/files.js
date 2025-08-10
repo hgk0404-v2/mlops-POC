@@ -1,6 +1,6 @@
 // static/viewer/files.js
 // 목록 불러오기 / 검색 / 정렬
-import { allFiles, setAllFiles, selectedFiles } from './state.js';
+import { allFiles, setAllFiles } from './state.js';
 import { renderList } from './render.js';
 
 // "/files" API 호출하여 전체 파일 목록을 불러오고 setAllFiles()로 저장한 뒤 렌더링
