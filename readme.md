@@ -14,8 +14,10 @@ fastapi-projecvt-v0.1/
 ├── app/
 │   ├── routers/
 │   │   ├── __init__.py
+│   │   ├── bucket.py         
+│   │   ├── dashboard.py         
 │   │   ├── file.py         # 파일 업로드/다운로드 API
-│   │   ├── preview.py         # 
+│   │   ├── preview.py      # 
 │   │   └── upload_proxy.py
 │   ├── services/
 │   │   ├── minio_client.py # MinIO 연동 함수
@@ -23,7 +25,12 @@ fastapi-projecvt-v0.1/
 │   ├── train/
 │   │   └── trainer.py      # YOLOv8 학습 코드
 │   └── main.py
+├── etc/ 
 ├── static/ 
+│   └── dashboard/
+│       └── index.html
+│       └── dashboard.css 
+│       └── dashboard.js
 │   └── uploader/
 │       └── index.html
 │       └── uploader.css 
@@ -34,10 +41,10 @@ fastapi-projecvt-v0.1/
 │       └── delete.js
 │       └── files.js
 │       └── main.js
+│       └── refresh.js
 │       └── render.js
 │       └── resize.js
 │       └── state.js
-│       └── viewer.js // 사용 ❌
 ├── .env
 ├── 시작.txt
 ├── docker-compose.yaml
