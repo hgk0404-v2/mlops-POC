@@ -3,6 +3,7 @@
 import { loadFiles, filterAndRender, loadBuckets } from './files.js';
 import { handleBulkDelete } from './delete.js';
 import { setupResizer } from './resize.js';
+import { initRefresh } from './refresh.js';
 
 console.log("✅ viewer 모듈 기반 JS 시작"); // F12 console에 시작 로그 출력
 const $ = (s) => document.querySelector(s);
@@ -52,6 +53,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // 아니라면 최소 라벨만이라도 맞춰 둡니다.
         setPreviewLabel(first);
     }
+    initRefresh({ loadFiles, filterAndRender });
 
     // 4) 리사이저
     setupResizer();

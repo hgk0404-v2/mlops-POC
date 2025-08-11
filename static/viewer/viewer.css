@@ -130,3 +130,48 @@ body{ margin:0; background:radial-gradient(900px 600px at 80% -10%, rgba(79,70,2
     .resizer{ height:6px; width:100%; cursor:row-resize }
     .preview{ height:52vh }
 }
+/* === FileList 전용: 체크박스 크게 === */
+    .sidebar #fileList input[type="checkbox"] {
+    transform: scale(1.8);           /* 1.6~2.0 사이로 취향에 맞게 조절 */
+    -webkit-transform: scale(1.8);
+    transform-origin: left center;   /* 왼쪽 기준으로 커지게 */
+    margin-right: 10px;              /* 파일명과 간격 */
+    accent-color: var(--primary);    /* 체크 색상(지원 브라우저) */
+}
+
+/* 클릭 편의성: 행 높이/간격만 살짝 보강 (기존 #fileList li 규칙과 병행 적용됨) */
+.sidebar #fileList li {
+    min-height: 36px;
+    gap: 8px;
+}
+/* 목록 새로고침 버튼 */
+#refreshListBtn{
+    padding:10px 12px; font-weight:700; border-radius:10px;
+    background:linear-gradient(180deg, rgba(79,70,229,.10), rgba(79,70,229,.04));
+    border:1px solid rgba(79,70,229,.35); color:var(--primary);
+    cursor:pointer; transition:transform var(--t), box-shadow var(--t);
+    margin-left:6px; /* '선택 삭제' 옆 간격 */
+}
+#refreshListBtn:hover{ transform:translateY(-1px); box-shadow:var(--shadow); }
+#refreshListBtn:disabled{ opacity:.6; cursor:not-allowed; }
+
+/* 버튼 가로 정렬 (선택 삭제 + 새로고침) */
+.action-row{
+    display: flex;
+    gap: 8px;            /* 버튼 사이 간격 */
+    margin-top: 6px;
+}
+
+/* 각 버튼이 한 줄에서 1/2씩 차지 */
+.action-row #bulkDeleteBtn,
+.action-row #refreshListBtn{
+    flex: 1 1 0;
+    width: auto;         /* 기존에 width:100% 강제된 경우를 무효화 */
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* 기존에 새로고침 버튼에 주었던 왼쪽 여백 제거(가로 배치 충돌 방지) */
+.action-row #refreshListBtn{
+    margin-left: 0 !important;
+}
