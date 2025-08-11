@@ -39,8 +39,10 @@ export function renderList(files) {
 
         const fileSpan = document.createElement("span");
         fileSpan.textContent = name + warning;
-        fileSpan.style.cursor = "pointer";
-        fileSpan.onclick = () => {
+        
+        // ✅ li 전체(빈 여백 포함)를 클릭하면 미리보기, 단 체크박스 클릭은 제외
+        li.addEventListener("click", (e) => {
+            if (e.target.closest('input[type="checkbox"]')) return; // 체크박스 클릭은 무시
             const bucket = document.getElementById("bucketSelect").value;
             if (!bucket) {
                 alert("버킷을 선택해주세요.");
@@ -48,35 +50,41 @@ export function renderList(files) {
             }
             const url = `${window.location.origin}/preview?image_name=${encodeURIComponent(name)}&bucket_name=${encodeURIComponent(bucket)}`;
             console.log("🖼️ Preview 요청:", url);
-            document.getElementById("previewImage").src = url;
-            document.getElementById("previewLabel").textContent = name; // ✅ 파일 이름 라벨 표시
-        };
-
-        const deleteBtn = document.createElement("button");
-        deleteBtn.innerHTML = "🗑️";
-        deleteBtn.className = "file-delete-button";
-        deleteBtn.onclick = async () => {
-            const ok = confirm(`정말 ${name} (+ txt) 파일을 삭제할까요?`);
-            if (!ok) return;
-
-            const bucket = document.getElementById("bucketSelect").value;
-            if (!bucket) {
-                alert("버킷을 선택해주세요.");
-                return;
-            }
-            const url = `/delete?image_name=${encodeURIComponent(name)}&bucket_name=${encodeURIComponent(bucket)}`;
-            const res = await fetch(url, { method: 'DELETE' });
-            if (!res.ok) {
-                console.error("[개별 삭제 실패]", res.status, await res.text());
-                alert("삭제에 실패했습니다.");
-                return;
-            }
-            await loadFiles(); // 목록 새로고침
-        };
+            // document.getElementById("previewImage").src = url;
+            applyPreviewSrc(name, bucket);
+            document.getElementById("previewLabel").textContent = name;
+        });
 
         li.appendChild(checkbox);
         li.appendChild(fileSpan);
-        li.appendChild(deleteBtn);
         ul.appendChild(li);
+    });
+}
+
+// === Overlay 상태 ===
+let overlayOn = true;
+
+function applyPreviewSrc(name, bucket) {
+    const url = `${window.location.origin}/preview`
+                + `?image_name=${encodeURIComponent(name)}`
+                + `&bucket_name=${encodeURIComponent(bucket)}`
+                + `&overlay=${overlayOn ? 1 : 0}`
+                + `&_=${Date.now()}`; // 캐시 방지
+    console.log("🖼️ Preview 요청:", url);
+    document.getElementById("previewImage").src = url;
+    document.getElementById("previewLabel").textContent = name;
+}
+
+const overlayBtn = document.getElementById('overlayToggleBtn');
+if (overlayBtn) {
+    overlayBtn.addEventListener('click', () => {
+        overlayOn = !overlayOn;
+        overlayBtn.classList.toggle('off', !overlayOn);
+        overlayBtn.textContent = overlayOn ? '오버레이 ON' : '오버레이 OFF';
+
+        // 현재 표시 중인 이미지 다시 로드
+        const bucket = document.getElementById("bucketSelect").value;
+        const currentName = document.getElementById("previewLabel").textContent?.trim();
+        if (bucket && currentName) applyPreviewSrc(currentName, bucket);
     });
 }

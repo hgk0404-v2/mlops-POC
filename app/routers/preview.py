@@ -12,7 +12,8 @@ router = APIRouter()
 )
 def preview_image_with_boxes(
     image_name: str = Query(...),
-    bucket_name: str = Query(..., description="MinIO 버킷 이름")  # ✅ 추가
+    bucket_name: str = Query(..., description="MinIO 버킷 이름"),  # ✅ 추가
+    overlay: bool = Query(True, description="YOLO bbox 오버레이 표시 여부")
 ):
     if not image_name.endswith(".jpg"):
         raise HTTPException(400, "Only .jpg allowed")
@@ -21,8 +22,14 @@ def preview_image_with_boxes(
 
     try:
         image_bytes = get_object(image_name, bucket_name).read()
-        annotation_text = get_object(txt_name, bucket_name).read().decode("utf-8")
-        preview = draw_yolo_bboxes(image_bytes, annotation_text)
+
+        # overlay=True일 때만 어노테이션 파일 읽어서 bbox 그림
+        if overlay:
+            annotation_text = get_object(txt_name, bucket_name).read().decode("utf-8")
+            preview = draw_yolo_bboxes(image_bytes, annotation_text)
+        else:
+            preview = image_bytes  # 원본 그대로 반환
+
         return Response(content=preview, media_type="image/jpeg")
     except Exception as e:
         raise HTTPException(500, f"preview 실패: {str(e)}")

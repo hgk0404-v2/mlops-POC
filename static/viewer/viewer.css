@@ -65,17 +65,12 @@ body{ margin:0; background:radial-gradient(900px 600px at 80% -10%, rgba(79,70,2
 .scrollable-list{ flex:1; overflow:auto; padding:12px }
 #fileList{ margin:0; padding:0; list-style:none }
 #fileList li{
-    display:flex; align-items:center; justify-content:space-between;
+    display:flex; align-items:center; justify-content:flex-start;
     padding:10px 10px; border-radius:10px; cursor:pointer; transition:background var(--t);
 }
 #fileList li:hover{ background:rgba(79,70,229,.08) }
 #fileList .name{ font-weight:600 }
 #fileList .meta{ color:var(--muted); font-size:.9rem; margin-left:8px }
-.file-delete-button{
-    margin-left:12px; cursor:pointer; background:linear-gradient(180deg, rgba(239,68,68,.10), rgba(239,68,68,.04));
-    border:1px solid rgba(239,68,68,.35); color:var(--danger); border-radius:8px; padding:6px 10px; transition:transform var(--t), box-shadow var(--t);
-}
-.file-delete-button:hover{ transform:translateY(-1px); box-shadow:var(--shadow) }
 
 .bulk-delete-footer{
     position:sticky; bottom:0; background:var(--card); border-top:1px solid var(--border); padding:12px; display:flex; justify-content:flex-end;
@@ -144,7 +139,7 @@ body{ margin:0; background:radial-gradient(900px 600px at 80% -10%, rgba(79,70,2
     min-height: 36px;
     gap: 8px;
 }
-/* 목록 새로고침 버튼 */
+/* ── 목록 새로고침 버튼 ──────────────────────────────────────────────────────── */
 #refreshListBtn{
     padding:10px 12px; font-weight:700; border-radius:10px;
     background:linear-gradient(180deg, rgba(79,70,229,.10), rgba(79,70,229,.04));
@@ -174,4 +169,21 @@ body{ margin:0; background:radial-gradient(900px 600px at 80% -10%, rgba(79,70,2
 /* 기존에 새로고침 버튼에 주었던 왼쪽 여백 제거(가로 배치 충돌 방지) */
 .action-row #refreshListBtn{
     margin-left: 0 !important;
+}
+/* ── 리스트 한 줄 전체가 클릭 타깃임을 시각적으로 보여주기 ─────────────────────── */
+#fileList li { cursor: pointer; }
+#fileList li input[type="checkbox"] { cursor: pointer; } /* 체크박스는 그대로 포인터 */
+
+/* ── 오버레이 토글 버튼 ──────────────────────────────────────────────────────────*/
+.chip{
+    padding:6px 10px; border-radius:999px; font-weight:700;
+    border:1px solid rgba(79,70,229,.35);
+    background:linear-gradient(180deg, rgba(79,70,229,.10), rgba(79,70,229,.04));
+    color:var(--primary); cursor:pointer; transition:transform .15s, box-shadow .15s;
+    margin-left:8px;
+}
+.chip:hover{ transform:translateY(-1px); box-shadow:var(--shadow); }
+.chip.off{
+    background:linear-gradient(180deg, rgba(107,114,128,.10), rgba(107,114,128,.04));
+    border-color:rgba(107,114,128,.35); color:#374151;
 }
