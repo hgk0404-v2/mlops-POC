@@ -1,7 +1,8 @@
 ## test.minio-v3
 ✅ 1. uploader 페이지 버킷별로 분리하여 업로드 하는 기능 추가 <br>
 ✅ 2. viewer 페이지 버킷별로 분리하여 업로드 하는 기능 추가 <br>
-✅ 3. viewer 페이지 어노테이션 on/off 기능 추가 
+✅ 3. viewer 페이지 어노테이션 on/off 기능 추가 <br>
+✅ 4. viewer 페이지 개별 삭제 기능 제거/전체 삭제 기능 추가
 
 ## 실행
 ✅ 백그라운드 실행: docker-compose up -d --build <br>

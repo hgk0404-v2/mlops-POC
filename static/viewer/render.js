@@ -31,6 +31,8 @@ export function renderList(files) {
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.className = "file-checkbox";
+        checkbox.dataset.name = name;   // ✅ 삭제용: 파일명을 dataset에 저장
+        checkbox.value = name;          // (백업용) value에도 동일하게
         checkbox.checked = selectedFiles.has(name);
         checkbox.onchange = () => {
             checkbox.checked ? selectedFiles.add(name) : selectedFiles.delete(name);
@@ -59,6 +61,9 @@ export function renderList(files) {
         li.appendChild(fileSpan);
         ul.appendChild(li);
     });
+    
+    // ✅ 목록 렌더 완료 이벤트(전체선택 버튼 라벨 갱신에 사용)
+    document.dispatchEvent(new Event('files:rendered'));
 }
 
 // === Overlay 상태 ===
