@@ -89,7 +89,7 @@ fastapi-projecvt-v0.1/
 <br>
 
 3-2. 🖼️ 000000000127.jpg
-<img width="1912" height="999" alt="Image" src="https://github.com/user-attachments/assets/f25a3355-eab9-46dc-acbb-85f4ae0ff151" />
+<img width="1914" height="989" alt="Image" src="https://github.com/user-attachments/assets/6b1f3465-bb39-4a98-bea4-881b75241ebc" />
 
 **클래스 라벨링:**  
 

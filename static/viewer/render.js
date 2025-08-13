@@ -61,7 +61,6 @@ export function renderList(files) {
         li.appendChild(fileSpan);
         ul.appendChild(li);
     });
-    
     // ✅ 목록 렌더 완료 이벤트(전체선택 버튼 라벨 갱신에 사용)
     document.dispatchEvent(new Event('files:rendered'));
 }
@@ -85,7 +84,7 @@ if (overlayBtn) {
     overlayBtn.addEventListener('click', () => {
         overlayOn = !overlayOn;
         overlayBtn.classList.toggle('off', !overlayOn);
-        overlayBtn.textContent = overlayOn ? '오버레이 ON' : '오버레이 OFF';
+        overlayBtn.textContent = overlayOn ? '어노테이션 ON' : '어노테이션 OFF';
 
         // 현재 표시 중인 이미지 다시 로드
         const bucket = document.getElementById("bucketSelect").value;
