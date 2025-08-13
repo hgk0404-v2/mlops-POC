@@ -72,7 +72,7 @@ fastapi-projecvt-v0.1/
 - 각기 다른 클래스는 다른 색상으로 인식해서 preview 제공
 
 3-1. 🖼️ 000000000036.jpg
-<img width="1897" height="985" alt="Image" src="https://github.com/user-attachments/assets/913007aa-354e-499e-8f5d-3d7a8e179efe" />
+<img width="1905" height="991" alt="Image" src="https://github.com/user-attachments/assets/2b99d15f-726b-4093-9b0d-2d949f507a53" />
 
 **클래스 라벨링:**  
 
