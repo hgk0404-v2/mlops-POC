@@ -1,4 +1,4 @@
-## test.minio-v3
+## main branch
 ✅ 1. uploader 페이지 버킷별로 분리하여 업로드 하는 기능 추가 <br>
 ✅ 2. viewer 페이지 버킷별로 분리하여 업로드 하는 기능 추가 <br>
 ✅ 3. viewer 페이지 어노테이션 on/off 기능 추가 <br>
