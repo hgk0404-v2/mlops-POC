@@ -65,14 +65,14 @@ fastapi-projecvt-v0.1/
 <br>
 
 ### 2. 이미지 업로드 upload
-<img width="1911" height="991" alt="Image" src="https://github.com/user-attachments/assets/85957ca4-0aae-4bd2-abac-de0c5d2988fb" />
+<img width="1915" height="990" alt="Image" src="https://github.com/user-attachments/assets/afaf5a72-d974-4be6-9ad9-22200a4f45ff" />
 
 
 ### 3. 업로드된 이미지 preview
 - 각기 다른 클래스는 다른 색상으로 인식해서 preview 제공
 
 3-1. 🖼️ 000000000036.jpg
-<img width="1905" height="991" alt="Image" src="https://github.com/user-attachments/assets/2b99d15f-726b-4093-9b0d-2d949f507a53" />
+<img width="1914" height="983" alt="Image" src="https://github.com/user-attachments/assets/37eacc7c-f836-4776-a05e-0c48596fa13a" />
 
 **클래스 라벨링:**  
 
@@ -89,7 +89,7 @@ fastapi-projecvt-v0.1/
 <br>
 
 3-2. 🖼️ 000000000127.jpg
-<img width="1914" height="989" alt="Image" src="https://github.com/user-attachments/assets/6b1f3465-bb39-4a98-bea4-881b75241ebc" />
+<img width="1916" height="1001" alt="Image" src="https://github.com/user-attachments/assets/a32fdbfc-c228-4f77-be9d-49e4d230999b" />
 
 **클래스 라벨링:**  
 
