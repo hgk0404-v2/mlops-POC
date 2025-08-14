@@ -1,7 +1,4 @@
 from PIL import Image, ImageDraw
-import io, random
-
-from PIL import Image, ImageDraw
 import io, colorsys
 
 def color_for(cls_id: int) -> tuple[int,int,int]:
