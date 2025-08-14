@@ -1,6 +1,16 @@
+# --- 기본 패키지 ---
 fastapi==0.116.1
 uvicorn==0.35.0
 python-multipart==0.0.20
 minio==7.2.16 # 클라이언트
 python-dotenv==1.1.1
 pillow==11.3.0
+
+# --- PyTorch + CUDA 11.8 (GPU) ---
+--extra-index-url https://download.pytorch.org/whl/cu118
+torch==2.1.0+cu118
+torchvision==0.16.0+cu118
+torchaudio==2.1.0+cu118
+
+# --- YOLOv8 ---
+ultralytics==8.3.179

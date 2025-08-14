@@ -1,9 +1,34 @@
+# syntax=docker/dockerfile:1.6
+
+########## 1) wheel 준비 스테이지 (requirements만 의존) ##########
+FROM python:3.11.11-slim AS wheels
+WORKDIR /tmp
+
+RUN python -m pip install --upgrade pip
+
+COPY requirements.txt .
+
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip download --prefer-binary -r requirements.txt -d /wheelhouse
+
 FROM python:3.11.11-slim
 
 WORKDIR /app
-COPY . /app
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN apt-get update && apt-get install -y \
+    libgl1 \
+    libglib2.0-0 \
+    ffmpeg \
+&& rm -rf /var/lib/apt/lists/*
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+COPY --from=wheels /wheelhouse /wheelhouse
+COPY requirements.txt .
+
+RUN --mount=type=cache,target=/root/.cache/pip \
+    python -m pip install --upgrade pip && \
+    pip install --no-index --find-links=/wheelhouse -r requirements.txt
+
+COPY . ./app
+
+# FastAPI 실행 (핫 리로드)
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
